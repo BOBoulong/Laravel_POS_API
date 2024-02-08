@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
-class CatagoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Category::all();
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -34,15 +35,15 @@ class CatagoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $catagory)
+    public function show(string $id)
     {
-        //
+        return Category::findOrFail($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $catagory)
+    public function edit(string $id)
     {
         //
     }
@@ -50,15 +51,15 @@ class CatagoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $catagory)
+    public function update(Request $request, string $id)
     {
-        //
+       //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $catagory)
+    public function destroy(string $id)
     {
         //
     }
