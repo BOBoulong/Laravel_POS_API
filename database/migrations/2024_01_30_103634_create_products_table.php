@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->integer('quantity')->default(1);
             $table->decimal('price', 6, 2);
-            $table->integer('alert_stock')->default(100);
+            $table->integer('alert_stock');
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->timestamps();
