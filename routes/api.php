@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -26,6 +27,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Auth
+Route::post('login',[UserAuthController::class,'login']);
+Route::delete('logout',[UserAuthController::class,'logout'])->middleware('auth:sanctum');
 
 // User API
 Route::get('getAllUsers', [UserController::class, 'getAllUsers']);
