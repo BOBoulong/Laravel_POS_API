@@ -55,7 +55,7 @@ class CategoryController extends Controller
         }
 
         // Return an error response if category creation failed
-        return response()->json(['message' => 'Category not created!'], 500);
+        return response()->json(['message' => 'Category not created!'], 400);
 
     }
 

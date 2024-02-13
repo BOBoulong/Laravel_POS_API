@@ -62,7 +62,7 @@ class ProductController extends Controller
                 ], 201);
         }
         // Return a JSON response indicating failure
-        return response()->json(['message' => 'Product not created!'], 500);
+        return response()->json(['message' => 'Product not created!'], 400);
 }
 
     /**

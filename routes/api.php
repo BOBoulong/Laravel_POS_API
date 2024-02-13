@@ -4,6 +4,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,3 +54,31 @@ Route::post('createProduct', [ProductController::class, 'createProduct']);
 Route::get('getProductById/{id}', [ProductController::class, 'getProductById']);
 Route::put('updateProductById/{id}', [ProductController::class, 'updateProductById']);
 Route::delete('deleteProductById/{id}', [ProductController::class, 'deleteProductById']);
+
+// Order API
+Route::get('getAllOrders', [OrderController::class, 'getAllOrders']);
+Route::post('createOrder', [OrderController::class, 'createOrder']);
+Route::get('getOrderById/{id}', [OrderController::class, 'getOrderById']);
+Route::put('updateOrderById/{id}', [OrderController::class, 'updateOrderById']);
+Route::delete('deleteOrderById/{id}', [OrderController::class, 'deleteOrderById']);
+
+// Order_Details
+Route::get('getAllOrderDetails', [OrderDetailController::class, 'getAllOrderDetails']);
+Route::post('createOrderDetail', [OrderDetailController::class, 'createOrderDetail']);
+Route::get('getOrderDetailById/{id}', [OrderDetailController::class, 'getOrderDetailById']);
+Route::put('updateOrderDetailById/{id}', [OrderDetailController::class, 'updateOrderDetailById']);
+Route::delete('deleteOrderDetailById/{id}', [OrderDetailController::class, 'deleteOrderDetailById']);
+
+// Payment API
+Route::get('getAllPayments', [PaymentController::class, 'getAllPayments']);
+Route::post('createPayment', [PaymentController::class, 'createPayment']);
+Route::get('getPaymentById/{id}', [PaymentController::class, 'getPaymentById']);
+Route::put('updatePaymentById/{id}', [PaymentController::class, 'updatePaymentById']);
+Route::delete('deletePaymentById/{id}', [PaymentController::class, 'deletePaymentById']);
+
+// Transaction API
+Route::get('getAllTransactions', [TransactionController::class, 'getAllTransactions']);
+Route::post('createTransaction', [TransactionController::class, 'createTransaction']);
+Route::get('getTransactionById/{id}', [TransactionController::class, 'getTransactionById']);
+Route::put('updateTransactionById/{id}', [TransactionController::class, 'updateTransactionById']);
+Route::delete('deleteTransactionById/{id}', [TransactionController::class, 'deleteTransactionById']);

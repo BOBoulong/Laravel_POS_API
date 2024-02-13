@@ -50,7 +50,7 @@ class CustomerController extends Controller
             ], 201);
         }
         // Return a failure response
-        return response()->json(['massage' => 'Customer Not Created.'], 500);
+        return response()->json(['massage' => 'Customer Not Created.'], 400);
     }
 
     /**

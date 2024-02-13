@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->date('transaction_date');
+            $table->decimal('amount', 10, 2);
             $table->string('status');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->bigInteger('payment_id')->unsigned();
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->timestamps();

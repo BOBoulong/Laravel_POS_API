@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('order_detail_id')->unsigned();
-            $table->foreign('order_detail_id')->references('id')->on('order_details')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->decimal('amount', 10, 2);
+            $table->date('payment_date');
+            $table->bigInteger('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->timestamps();
         });
     }
