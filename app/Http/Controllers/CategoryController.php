@@ -8,110 +8,123 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     /**
-     * Display all Categories in the database.
+     * Get all categories.
      */
-    public function getAllCategory()
+    public function getAllCategories()
     {
+        // Find all categories.
         $categories = Category::all();
-        if($categories){
+        if($categories->isEmpty()){
+            // If there are no categories, return a 404 error.
             return response()->json([
-                'message' => 'All Categories',
-                'data' => $categories], 200);
+                'message' => 'No Categories found!'
+            ], 404);
         }
-        return response()->json(['message' => 'No Category Found'], 404);
+        // If categories found, return a 200 response with the categories.
+        return response()->json([
+            'message' => 'All Categories.',
+            'data' => $categories
+        ], 200);
     }
-    // /**
-    //  * Show the form for creating a new resource.
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
+
+
 
     /**
-     * Create and store a new category into the database.
+     * Create and store a new category.
      */
     public function createCategory(Request $request)
     {
-        $request -> validate([
+        // Validate the request
+        $validatedData =$request -> validate([
             'name' => 'required|max:255',
             'description' => 'required|max:255',
         ]);
 
-        // Create The Category.
-        $category = new Category;
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->save();
+        // Create a new category
+        $category = Category::create([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+        ]);
 
-        if($category->save()){
+        if ($category) {
+            // Return a success response if category creation was successful
             return response()->json([
-                'message' => 'Category created successfully',
-                'category' => $category], 201);
+                'message' => 'Category created successfully.',
+                'category' => $category
+            ], 201);
         }
-            return response()->json(['message' => 'Category not created'], 404);
+
+        // Return an error response if category creation failed
+        return response()->json(['message' => 'Category not created!'], 500);
 
     }
 
 
 
     /**
-     * Display Category by id.
+     * Get a category by ID
      */
     public function getCategoryById(string $id)
     {
+        // Find the category by ID
         $category = Category::find($id);
         if($category) {
+            // If the category is found, return it.
             return response()->json([
-                'message' => 'Category found',
+                'message' => 'Category found.',
                 'category' => $category], 200);
         }
-            return response()->json(['message' => 'Category not found'], 404);
+        // If the category is not found, return a 404 error.
+        return response()->json(['message' => 'Category not found!'], 404);
     }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  */
-    // public function edit(string $id)
-    // {
-    //     //
-    // }
 
     /**
-     * Update the category by id into the database.
+     * Update a category by ID.
      */
     public function updateCategoryById(Request $request, string $id)
     {
+        // Validate incoming data
         $request->validate([
             'name' =>'required|max:255',
             'description' =>'required|max:255',
         ]);
+        // Find the category by ID
         $category = Category::find($id);
+
+        // If category is found, update it
         if($category) {
             $category->name = $request->name;
             $category->description = $request->description;
             $category->save();
-            return response()->json([
-                'message' => 'Category updated successfully',
-                'category' => $category], 200);
+        // Return a JSON response update success
+        return response()->json([
+            'message' => 'Category updated successfully.',
+            'category' => $category
+        ], 200);
         }
-        return response()->json(['message' => 'Category not found'], 404);
-
+        // If the category is not found, return a 404 error
+        return response()->json(['message' => 'Category not found!'], 404);
     }
 
 
     /**
-     * Remove the category by id from the database.
+     * Remove a category by ID
      */
     public function deleteCategoryById(string $id)
     {
+        // Find the category by ID.
         $category = Category::find($id);
+
+        // Delete the category
         if($category) {
             $category->delete();
+            // Return a JSON response indicating that the category has been deleted
             return response()->json([
-                'message' => 'Category deleted successfully',
+                'message' => 'Category deleted successfully.',
                 'deleted_category'=>$category], 200);
         }
-        return response()->json(['message' => 'Category not found'], 404);
+        // Return a 404 response indicating that the category was not found
+        return response()->json(['message' => 'Category not found!'], 404);
     }
 }

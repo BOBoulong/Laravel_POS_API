@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255)->nullable;
             $table->string('phone', 50);
-            $table->jsonb('address');
+            $table->text('address');
             $table->timestamps();
         });
     }
