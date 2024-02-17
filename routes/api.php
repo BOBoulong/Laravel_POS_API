@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Middleware\Authenticate;
 
 
 /*
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -33,11 +34,11 @@ Route::post('login',[UserAuthController::class,'login']);
 Route::delete('logout',[UserAuthController::class,'logout'])->middleware('auth:sanctum');
 
 // User API
-Route::get('getAllUsers', [UserController::class, 'getAllUsers']);
-Route::post('createUser', [UserController::class, 'createUser']);
-Route::get('getUserById/{id}', [UserController::class, 'getUserById']);
-Route::put('updateUserById/{id}', [UserController::class, 'updateUserById']);
-Route::delete('deleteUserById/{id}', [UserController::class, 'deleteUserById']);
+Route::get('user', [UserController::class, 'getAllUsers']);
+Route::post('user', [UserController::class, 'createUser']);
+Route::get('user/{id}', [UserController::class, 'getUserById']);
+Route::put('user/{id}', [UserController::class, 'updateUserById']);
+Route::delete('user/{id}', [UserController::class, 'deleteUserById']);
 
 // Customer API
 Route::get('getAllCustomers', [CustomerController::class, 'getAllCustomers']);
