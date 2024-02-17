@@ -41,50 +41,50 @@ Route::put('user/{id}', [UserController::class, 'updateUserById']);
 Route::delete('user/{id}', [UserController::class, 'deleteUserById']);
 
 // Customer API
-Route::get('getAllCustomers', [CustomerController::class, 'getAllCustomers']);
-Route::post('createCustomer', [CustomerController::class, 'createCustomer']);
-Route::get('getCustomerById/{id}', [CustomerController::class, 'getCustomerById']);
-Route::put('updateCustomerById/{id}', [CustomerController::class, 'updateCustomerById']);
-Route::delete('deleteCustomerById/{id}', [CustomerController::class, 'deleteCustomerById']);
+Route::get('customer', [CustomerController::class, 'getAllCustomers']);
+Route::post('customer', [CustomerController::class, 'createCustomer']);
+Route::get('customer/{id}', [CustomerController::class, 'getCustomerById']);
+Route::put('customer/{id}', [CustomerController::class, 'updateCustomerById']);
+Route::delete('customer/{id}', [CustomerController::class, 'deleteCustomerById']);
 
 // Category API
-Route::get('getAllCategories', [CategoryController::class, 'getAllCategories']);
-Route::post('createCategory', [CategoryController::class, 'createCategory']);
-Route::get('getCategoryById/{id}', [CategoryController::class, 'getCategoryById']);
-Route::put('updateCategoryById/{id}', [CategoryController::class, 'updateCategoryById']);
-Route::delete('deleteCategoryById/{id}', [CategoryController::class, 'deleteCategoryById']);
+Route::get('category', [CategoryController::class, 'getAllCategories']);
+Route::post('category', [CategoryController::class, 'createCategory']);
+Route::get('category/{id}', [CategoryController::class, 'getCategoryById']);
+Route::put('category/{id}', [CategoryController::class, 'updateCategoryById']);
+Route::delete('category/{id}', [CategoryController::class, 'deleteCategoryById']);
 
 // Product API
-Route::get('getAllProducts', [ProductController::class, 'getAllProducts']);
-Route::post('createProduct', [ProductController::class, 'createProduct']);
-Route::get('getProductById/{id}', [ProductController::class, 'getProductById']);
-Route::put('updateProductById/{id}', [ProductController::class, 'updateProductById']);
-Route::delete('deleteProductById/{id}', [ProductController::class, 'deleteProductById']);
+Route::get('product', [ProductController::class, 'getAllProducts']);
+Route::post('product', [ProductController::class, 'createProduct']);
+Route::get('product/{id}', [ProductController::class, 'getProductById']);
+Route::put('product/{id}', [ProductController::class, 'updateProductById']);
+Route::delete('product/{id}', [ProductController::class, 'deleteProductById']);
 
 // Order API
-Route::get('getAllOrders', [OrderController::class, 'getAllOrders']);
-Route::post('createOrder', [OrderController::class, 'createOrder']);
-Route::get('getOrderById/{id}', [OrderController::class, 'getOrderById']);
-Route::put('updateOrderById/{id}', [OrderController::class, 'updateOrderById']);
-Route::delete('deleteOrderById/{id}', [OrderController::class, 'deleteOrderById']);
+Route::get('order', [OrderController::class, 'getAllOrders']);
+Route::post('order', [OrderController::class, 'createOrder']);
+Route::get('order/{id}', [OrderController::class, 'getOrderById']);
+Route::put('order/{id}', [OrderController::class, 'updateOrderById']);
+Route::delete('order/{id}', [OrderController::class, 'deleteOrderById']);
 
 // Order_Details
-Route::get('getAllOrderDetails', [OrderDetailController::class, 'getAllOrderDetails']);
-Route::post('createOrderDetail', [OrderDetailController::class, 'createOrderDetail']);
-Route::get('getOrderDetailById/{id}', [OrderDetailController::class, 'getOrderDetailById']);
-Route::put('updateOrderDetailById/{id}', [OrderDetailController::class, 'updateOrderDetailById']);
-Route::delete('deleteOrderDetailById/{id}', [OrderDetailController::class, 'deleteOrderDetailById']);
+Route::get('order-detail', [OrderDetailController::class, 'getAllOrderDetails']);
+Route::post('order-detail', [OrderDetailController::class, 'createOrderDetail']);
+Route::get('order-detail/{id}', [OrderDetailController::class, 'getOrderDetailById']);
+Route::put('order-detail/{id}', [OrderDetailController::class, 'updateOrderDetailById']);
+Route::delete('order-detail/{id}', [OrderDetailController::class, 'deleteOrderDetailById']);
 
 // Payment API
-Route::get('getAllPayments', [PaymentController::class, 'getAllPayments']);
-Route::post('createPayment', [PaymentController::class, 'createPayment']);
-Route::get('getPaymentById/{id}', [PaymentController::class, 'getPaymentById']);
-Route::put('updatePaymentById/{id}', [PaymentController::class, 'updatePaymentById']);
-Route::delete('deletePaymentById/{id}', [PaymentController::class, 'deletePaymentById']);
+Route::get('payment', [PaymentController::class, 'getAllPayments']);
+Route::post('payment', [PaymentController::class, 'createPayment']);
+Route::get('payment/{id}', [PaymentController::class, 'getPaymentById']);
+Route::put('payment/{id}', [PaymentController::class, 'updatePaymentById']);
+Route::delete('payment/{id}', [PaymentController::class, 'deletePaymentById']);
 
 // Transaction API
-Route::get('getAllTransactions', [TransactionController::class, 'getAllTransactions']);
-Route::post('createTransaction', [TransactionController::class, 'createTransaction']);
-Route::get('getTransactionById/{id}', [TransactionController::class, 'getTransactionById']);
-Route::put('updateTransactionById/{id}', [TransactionController::class, 'updateTransactionById']);
-Route::delete('deleteTransactionById/{id}', [TransactionController::class, 'deleteTransactionById']);
+Route::get('transaction', [TransactionController::class, 'getAllTransactions']);
+Route::post('transaction', [TransactionController::class, 'createTransaction']);
+Route::get('transaction/{id}', [TransactionController::class, 'getTransactionById']);
+Route::put('transaction/{id}', [TransactionController::class, 'updateTransactionById']);
+Route::delete('transaction/{id}', [TransactionController::class, 'deleteTransactionById']);
