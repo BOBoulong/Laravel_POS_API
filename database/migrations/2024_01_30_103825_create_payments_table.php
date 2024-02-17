@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('amount', 10, 2);
-            $table->date('payment_date');
-            $table->bigInteger('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->string('payment_method')->default('Cash');
             $table->timestamps();
         });
     }

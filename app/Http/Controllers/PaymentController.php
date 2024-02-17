@@ -36,18 +36,12 @@ class PaymentController extends Controller
     {
         // Validate the request
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'amount' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'payment_date' => 'required|date',
-            'order_id' => 'required|integer|exists:orders,id' // Typo fixed here
+            'payment_method' => 'required|string'
         ]);
 
         // Create a new Payment
         $payment = Payment::create([
-            'name' => $validatedData['name'],
-            'amount' => $validatedData['amount'],
-            'payment_date' => $validatedData['payment_date'],
-            'order_id' => $validatedData['order_id']
+            'payment' => $validatedData['payment_method'],
         ]);
 
         if ($payment) {
@@ -90,10 +84,7 @@ class PaymentController extends Controller
     {
         // Validate incoming data
         $request->validate([
-            'name' => 'required|max:255',
-            'amount' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'payment_date' => 'required|date',
-            'order_id' => 'required|integer|exists:orders,id' // Typo fixed here
+            'payment_method' => 'required|string'
         ]);
 
         // Find the Payment by ID
@@ -101,10 +92,7 @@ class PaymentController extends Controller
 
         // If Payment is found, update it
         if ($payment) {
-            $payment->name = $request->name;
-            $payment->amount = $request->amount;
-            $payment->payment_date = $request->payment_date;
-            $payment->order_id = $request->order_id;
+            $payment -> payment_method = $request -> payment_method;
             $payment->save();
 
             // Return a JSON response with the updated Payment information

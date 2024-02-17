@@ -36,18 +36,14 @@ class TransactionController extends Controller
     {
         // Validate the request
         $validatedData = $request->validate([
-            'transaction_date' => 'required|date',
-            'amount' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'status' => 'required|max:50',
-            'payment_id' => 'required|integer|exists:payments,id' // Typo fixed here
+            'order_id' => 'required|integer|exists:orders,id' // Typo fixed here
         ]);
 
         // Create a new Transaction
         $transaction = Transaction::create([
-            'transaction_date' => $validatedData['transaction_date'],
-            'amount' => $validatedData['amount'],
             'status' => $validatedData['status'],
-            'payment_id' => $validatedData['payment_id']
+            'order_id' => $validatedData['order_id']
         ]);
 
         if ($transaction) {
@@ -90,10 +86,8 @@ class TransactionController extends Controller
 {
     // Validate incoming data
     $request->validate([
-        'transaction_date' => 'required|date',
-        'amount' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
         'status' => 'required|max:50',
-        'payment_id' => 'required|integer|exists:payments,id' // Typo fixed here
+        'order_id' => 'required|integer|exists:orders,id' // Typo fixed here
     ]);
 
     // Find the Transaction by ID
@@ -101,10 +95,8 @@ class TransactionController extends Controller
 
     // If Transaction is found, update it
     if ($transaction) {
-        $transaction->transaction_date = $request->transaction_date;
-        $transaction->amount = $request->amount;
         $transaction->status = $request->status;
-        $transaction->payment_id = $request->payment_id;
+        $transaction->order_id = $request->order_id;
         $transaction->save();
 
         // Return a JSON response with the updated Transaction information

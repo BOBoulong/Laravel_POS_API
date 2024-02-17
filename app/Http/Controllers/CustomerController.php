@@ -32,14 +32,18 @@ class CustomerController extends Controller
         // Validate the request data
         $validatedData = $request -> validate ([
             'name' => 'required|max:255',
-            'phone' => 'required|max:50',
-            'address' => 'required|max:255',
+            'stall' => 'required|max:255',
+            'phone' =>'required|max:50',
+            'address' =>'required|max:255',
+            'user_id' => 'required|integer|exists:users,id',
         ]);
         // Create a new customer
         $customer = Customer::create([
             'name' => $validatedData['name'],
+            'stall' => $validatedData['stall'],
             'phone' => $validatedData['phone'],
             'address' => $validatedData['address'],
+            'user_id'=>$validatedData['user_id']
         ]);
 
         // Return a success response
@@ -79,16 +83,20 @@ class CustomerController extends Controller
         // Validate the request
         $request -> validate([
             'name' => 'required|max:255',
+            'stall' => 'required|max:255',
             'phone' =>'required|max:50',
             'address' =>'required|max:255',
+            'user_id' => 'required|integer|exists:users,id',
         ]);
         // Find the customer by ID and update it
         $customer = Customer::find($id);
         // Update the customer
         if ($customer){
             $customer->name = $request->name;
+            $customer->stall = $request->stall;
             $customer->phone = $request->phone;
             $customer->address = $request->address;
+            $customer->user_id= $request->user_id;
             $customer->save();
             // Return a successful response with updated data
             return response()->json([

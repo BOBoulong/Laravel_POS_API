@@ -9,9 +9,9 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $table = 'transactions';
-    protected $fillable = ['transaction_date', 'amount', 'status', 'payment_id'];
-    public function payment()
+    protected $fillable = ['status', 'order_id'];
+    public function oder()
     {
-        return $this->belongsTo(Payment::class);
+        return $this->belongsTo(Order::class);
     }
 }

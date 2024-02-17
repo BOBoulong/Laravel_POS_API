@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255)->nullable;
+            $table->string('name', 255);
+            $table->string('stall', 255)->nullable();
             $table->string('phone', 50);
             $table->text('address');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->timestamps();
         });
     }

@@ -37,6 +37,8 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|min:8',
+            'phone' => 'required|max:50',
+            'address' => 'required|max:255',
             'user_type' =>'required'
         ]);
 
@@ -53,6 +55,8 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password), // Hash the password for security
+            'phone' => $request->phone,
+            'address' => $request->address,
             'user_type' => $request->user_type
         ]);
 
@@ -96,6 +100,8 @@ class UserController extends Controller
             'name' =>'required|max:255',
             'email' =>'required|email|max:255',
             'password' =>'required|min:8',
+            'phone' => 'required|max:50',
+            'address' => 'required|max:255',
             'user_type' =>'required'
         ]);
         // Find the user by ID.
@@ -105,6 +111,8 @@ class UserController extends Controller
             $user -> name = $request->name;
             $user -> email = $request->email;
             $user -> password = $request->password;
+            $user -> phone = $request->phone;
+            $user -> address = $request->address;
             $user -> user_type = $request->user_type;
             $user->save();
             // Return a JSON response indicating that the user was updated successfully

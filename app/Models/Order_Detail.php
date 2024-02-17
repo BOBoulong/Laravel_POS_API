@@ -13,9 +13,10 @@ class Order_Detail extends Model
         'order_id',
         'product_id',
         'quantity',
-        'unit_price',
+        'price',
         'discount',
-        'amount'
+        'total_amount',
+        'payment_id'
     ];
     public function order()
     {
@@ -24,5 +25,8 @@ class Order_Detail extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+    public function payment(){
+        return $this -> belongsTo(Payment::class);
     }
 }

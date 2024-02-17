@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->date('transaction_date');
-            $table->decimal('amount', 10, 2);
-            $table->string('status');
-            $table->bigInteger('payment_id')->unsigned();
-            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->enum('status', ['pending', 'completed', 'failed']) ;
+            $table->bigInteger('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->timestamps();
         });
     }

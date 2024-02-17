@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table -> date('order_date');
+            $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'canceled']);
             $table->bigInteger('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->timestamps();

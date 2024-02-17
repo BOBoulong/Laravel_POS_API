@@ -37,12 +37,14 @@ class OrderController extends Controller
         // Validate the request
         $validatedData =$request -> validate([
             'order_date' => 'required|date',
+            'status' => 'required',
             'customer_id' =>'required|integer|exists:customers,id',
         ]);
 
         // Create a new Order
         $Order = Order::create([
             'order_date'=> $validatedData['order_date'],
+            'status'=> $validatedData['status'],
             'customer_id' => $validatedData['customer_id'],
         ]);
 
@@ -87,6 +89,7 @@ class OrderController extends Controller
         // Validate incoming data
         $request->validate([
             'order_date' => 'required|date',
+            'status' => 'required',
             'customer_id' =>'required|integer|exists:customers,id',
         ]);
         // Find the Order by ID
@@ -95,6 +98,7 @@ class OrderController extends Controller
         // If Order is found, update it
         if($Order) {
             $Order->order_date = $request->order_date;
+            $Order->status = $request->status;
             $Order->customer_id = $request->customer_id;
             $Order->save();
         // Return a JSON response update success
