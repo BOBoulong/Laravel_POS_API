@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->decimal('discount', 10, 2)->default(0.00);
             $table->decimal('total_amount', 10, 2);
-            $table->enum('status', ['Pending', 'Processing', 'Shipped', 'Completed', 'Canceled']);
+            $table->enum('status', ['PENDING', 'PROCESSING', 'SHIPPED', 'COMPLETED', 'CANCELED']);
             $table->bigInteger('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->enum('payment_method', ['Cash', 'Credit Card', 'QR Code', 'Other']);

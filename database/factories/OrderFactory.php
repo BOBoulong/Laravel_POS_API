@@ -24,7 +24,7 @@ class OrderFactory extends Factory
             'price' => $this->faker->randomFloat(2, 10, 99),
             'discount' => $this->faker->randomFloat(2, 0, 25),
             'total_amount' => $this->faker->randomFloat(2, 50, 500),
-            'status' => $this->faker->randomElement(['Pending', 'Processing', 'Shipped', 'Completed', 'Canceled']),
+            'status' => $this->faker->randomElement(['PENDING', 'PROCESSING', 'SHIPPED', 'COMPLETED', 'CANCELED']),
             'customer_id'=> Customer::all()->random()['id'],
             'payment_method' => $this->faker->randomElement(['Cash', 'Credit Card', 'QR Code', 'Other']),
         ];

@@ -69,7 +69,7 @@ class Kernel extends HttpKernel
 
     public function handle($request)
     {   
-        if($request->is('*log*')){
+        if($request->is('*log*') || $request->is('*user*')){
             $index = array_search(\App\Http\Middleware\Authenticate::class, $this->middleware);
             unset($this->middleware[$index]);
         }
