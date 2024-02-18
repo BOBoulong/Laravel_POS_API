@@ -29,16 +29,8 @@ class CategoryFactory extends Factory
 
         static $counter = 0;
 
-        // No random category
-        // Product add new field ( bar code )
-        // Put payment method in order
-        // Put order detail in order
-        // ENUM use UPPERCASE
-
-        // send customer with order detail when get all ( just name of customer )
         // if tver lern: filter order by customer name, order date, order amount sort ASC DESC
 
-        // $categoryNames = ['Beverages', 'Energy Drink', 'Beer', 'Soda', 'Juice', 'Water', 'Tea', 'Coffee'];
         return [
             'name' => $categoryNames[$counter++ % count($categoryNames)],
             'description' => $this->faker->sentence,
