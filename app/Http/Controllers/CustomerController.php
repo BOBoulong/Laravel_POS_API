@@ -64,10 +64,10 @@ class CustomerController extends Controller
      */
     public function getCustomerById(string $id)
     {
-        // Find the customer by ID
-        $customer = Customer::find($id);
+        $customer = Customer::with(['orders.product:id,name'])->find($id, ['id', 'name', 'email', 'phone', 'address']);
         // Return a success response if customer found
         if($customer){
+            $customer->orders = $customer->orders()->orderBy('order_date')->get();
             return response()->json([
                'massage' => 'Customer Found.',
                 'data' => $customer
@@ -76,6 +76,8 @@ class CustomerController extends Controller
         // Return a failure response if customer not found
         return response()->json(['massage' => 'Customer Not Found.'], 404);
     }
+
+
 
     /**
      * Update a customer by ID.
