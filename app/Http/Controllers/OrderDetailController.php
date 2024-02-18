@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order_Detail;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderDetailController extends Controller
@@ -13,7 +13,7 @@ class OrderDetailController extends Controller
     public function getAllOrderDetails()
     {
         // Find all OrderDetails
-        $OrderDetails = Order_Detail::all();
+        $OrderDetails = OrderDetail::all();
         if($OrderDetails->isEmpty()){
             // If no OrderDetails are found, return a 404 error
             return response()->json([
@@ -44,7 +44,7 @@ class OrderDetailController extends Controller
         ]);
 
         // Create the OrderDetail
-        $orderDetail = Order_Detail::create([
+        $orderDetail = OrderDetail::create([
             'order_id' => $validatedData['order_id'],
             'product_id' => $validatedData['product_id'],
             'quantity' => $validatedData['quantity'],
@@ -72,7 +72,7 @@ class OrderDetailController extends Controller
     public function getOrderDetailById(string $id)
     {
         // Find the OrderDetail by ID
-        $OrderDetail = Order_Detail::find($id);
+        $OrderDetail = OrderDetail::find($id);
         // If the category is found, return it
         if($OrderDetail){
             return response()->json([
@@ -101,7 +101,7 @@ class OrderDetailController extends Controller
         ]);
 
         // Find the OrderDetail by ID
-        $OrderDetail = Order_Detail::find($id);
+        $OrderDetail = OrderDetail::find($id);
 
         // If the OrderDetail is found, update it
         if($OrderDetail){
@@ -130,7 +130,7 @@ class OrderDetailController extends Controller
     public function deleteOrderDetailById(string $id)
     {
         // Find the OrderDetail by ID
-        $OrderDetail = Order_Detail::find($id);
+        $OrderDetail = OrderDetail::find($id);
         // If the OrderDetail is found, delete it
         if($OrderDetail){
             $OrderDetail->delete();

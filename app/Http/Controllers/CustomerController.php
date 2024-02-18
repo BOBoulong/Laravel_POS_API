@@ -34,6 +34,7 @@ class CustomerController extends Controller
             'name' => 'required|max:255',
             'stall' => 'required|max:255',
             'phone' =>'required|max:50',
+            'email' =>'required|email|max:255',
             'address' =>'required|max:255',
             'user_id' => 'required|integer|exists:users,id',
         ]);
@@ -42,6 +43,7 @@ class CustomerController extends Controller
             'name' => $validatedData['name'],
             'stall' => $validatedData['stall'],
             'phone' => $validatedData['phone'],
+            'email' => $validatedData['email'],
             'address' => $validatedData['address'],
             'user_id'=>$validatedData['user_id']
         ]);
@@ -85,6 +87,7 @@ class CustomerController extends Controller
             'name' => 'required|max:255',
             'stall' => 'required|max:255',
             'phone' =>'required|max:50',
+            'email' =>'required|email|max:255',
             'address' =>'required|max:255',
             'user_id' => 'required|integer|exists:users,id',
         ]);
@@ -95,6 +98,7 @@ class CustomerController extends Controller
             $customer->name = $request->name;
             $customer->stall = $request->stall;
             $customer->phone = $request->phone;
+            $customer->email= $request->email;
             $customer->address = $request->address;
             $customer->user_id= $request->user_id;
             $customer->save();
