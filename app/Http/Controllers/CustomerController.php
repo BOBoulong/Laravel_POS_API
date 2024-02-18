@@ -64,7 +64,8 @@ class CustomerController extends Controller
      */
     public function getCustomerById(string $id)
     {
-        $customer = Customer::with(['orders.product:id,name'])->find($id, ['id', 'name', 'email', 'phone', 'address']);
+        $customer = Customer::with(['orders' => function($query) {
+            $query->orderBy('order_date', 'desc')->take(5); }, "orders.product:id,name,image"])->find($id);
         // Return a success response if customer found
         if($customer){
             $customer->orders = $customer->orders()->orderBy('order_date')->get();

@@ -13,7 +13,7 @@ class OrderController extends Controller
     public function getAllOrders()
     {
         // Find all Orders.
-        $Orders = Order::with(['customer:id,name'])->get();
+        $Orders = Order::with(['customer:id,name', 'product:id,name'])->get();
         if($Orders->isEmpty()){
             // If there are no Orders, return a 404 error.
             return response()->json([
