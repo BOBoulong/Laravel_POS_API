@@ -36,14 +36,16 @@ class ProductFactory extends Factory
             'Lemonade Lullaby', 'Golden Glee', 'Herbal Hush', 'Cranberry Cascade', 'Caramel Crisp',
             'Blueberry Beacon', 'Eucalyptus Elixir', 'Nutty Nectar', 'Pear Pleasure', 'Pina Colada Perfection'
         ];
+        static $counter = 0;
         return [
-            'name' => $this->faker->randomElement($productNames),
+            'name' => $productNames[$counter++ % count($productNames)],
             'image' => $this->faker->imageUrl,
+            'bar_code' => $this->faker->unique()->ean13,
             'description' => $this->faker->sentence,
             'quantity' => 1 ,
             'price' => $this->faker->numberBetween(10, 50) / 10, // price in cents
             'alert_stock' => $this->faker->numberBetween(1000, 1500),
-            'category_id' => Category::all()->random(),
+            'category_id' => Category::all()->random()['id'],
         ];
     }
 }

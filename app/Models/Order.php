@@ -11,10 +11,19 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = [
         'order_date',
+        'product_id',
+        'quantity',
+        'price',
+        'total_amount',
+        'discount',
         'status',
         'customer_id',
+        'payment_method',
     ];
     public function customer(){
         return $this->belongsTo(Customer::class);
+    }
+    public function product() {
+        return $this->belongsTo(Product::class);
     }
 }

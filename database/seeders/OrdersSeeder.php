@@ -12,7 +12,7 @@ class OrdersSeeder extends Seeder
      */
     public function run(): void
     {
-        // Generate 20000 random oder records.
-        Order::factory()->count(20000)->create();
+        // Generate 10000 random oder records.
+        Order::factory()->count(10000)->create();
     }
 }

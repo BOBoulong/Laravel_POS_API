@@ -13,7 +13,7 @@ class CategoryFactory extends Factory
     protected $model  = Category::class;
     public function definition()
     {
-        $categoriesNames = array(
+        $categoryNames = array(
             "Produce",
             "Dairy",
             "Meat",
@@ -21,21 +21,26 @@ class CategoryFactory extends Factory
             "Frozen",
             "Canned",
             "Grains",
-            "Snacks"
+            "Snacks",
+            'Energy Drink',
+            'Beer'
+
         );
+
+        static $counter = 0;
 
         // No random category
         // Product add new field ( bar code )
-        // Put payment method in order 
+        // Put payment method in order
         // Put order detail in order
         // ENUM use UPPERCASE
 
         // send customer with order detail when get all ( just name of customer )
-        // if tver lern: filter order by customer name, order date, order amount sort ASC DESC 
+        // if tver lern: filter order by customer name, order date, order amount sort ASC DESC
 
         // $categoryNames = ['Beverages', 'Energy Drink', 'Beer', 'Soda', 'Juice', 'Water', 'Tea', 'Coffee'];
         return [
-            'name' => $this->faker->randomElement($categoryNames),
+            'name' => $categoryNames[$counter++ % count($categoryNames)],
             'description' => $this->faker->sentence,
         ];
     }

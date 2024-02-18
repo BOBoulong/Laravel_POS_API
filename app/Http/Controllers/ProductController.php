@@ -35,10 +35,11 @@ class ProductController extends Controller
          // Validate the incoming request data
         $validatedData = $request->validate([
             'name' => 'required|min:3|max:255',
+            'image' => 'required',
             'description' => 'required|max:255',
+            'bar_code' => 'required|max:255',
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0',
-            'image' => 'required',
             'alert_stock' => 'required|integer|min:0',
             'category_id' => 'required|integer|exists:categories,id'
         ]);
@@ -47,6 +48,7 @@ class ProductController extends Controller
         $product = Product::create([
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
+            'bar_code' => $validatedData['bar_code'],
             'price' => $validatedData['price'],
             'quantity' => $validatedData['quantity'],
             'image' => $validatedData['image'],
@@ -92,6 +94,7 @@ class ProductController extends Controller
         $request -> validate([
             'name' => 'required|max:255|min:3',
             'description' => 'required|max:255',
+            'bar_code' => 'required|max:255',
             'price' => 'required|max:20|min:3',
             'quantity' => 'required|integer',
             'image' =>'required',
@@ -106,6 +109,7 @@ class ProductController extends Controller
         if($product){
             $product->name = $request->name;
             $product->description = $request->description;
+            $product->bar_code=$request->bar_code;
             $product->price = $request->price;
             $product->quantity = $request->quantity;
             $product->image = $request->image;

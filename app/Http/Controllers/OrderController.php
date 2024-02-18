@@ -37,15 +37,27 @@ class OrderController extends Controller
         // Validate the request
         $validatedData =$request -> validate([
             'order_date' => 'required|date',
+            'product_id' => 'required|integer|exists:products,id',
+            'quantity' => 'required|integer',
+            'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'], // Validates decimal up to 2 decimal places
+            'discount' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'total_amount' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'status' => 'required',
             'customer_id' =>'required|integer|exists:customers,id',
+            'payment_method' => 'required'
         ]);
 
         // Create a new Order
         $Order = Order::create([
             'order_date'=> $validatedData['order_date'],
+            'product_id'=> $validatedData['product_id'],
+            'quantity'=> $validatedData['quantity'],
+            'price' => $validatedData['price'],
+            'discount'=> $validatedData['discount'],
+            'total_amount'=> $validatedData['total_amount'],
             'status'=> $validatedData['status'],
             'customer_id' => $validatedData['customer_id'],
+            'payment_method' => $validatedData['payment_method']
         ]);
 
         if ($Order) {
@@ -89,8 +101,14 @@ class OrderController extends Controller
         // Validate incoming data
         $request->validate([
             'order_date' => 'required|date',
+            'product_id' => 'required|integer|exists:products,id',
+            'quantity' => 'required|integer',
+            'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'], // Validates decimal up to 2 decimal places
+            'discount' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'total_amount' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'status' => 'required',
             'customer_id' =>'required|integer|exists:customers,id',
+            'payment_method' => 'required'
         ]);
         // Find the Order by ID
         $Order = Order::find($id);
@@ -98,8 +116,14 @@ class OrderController extends Controller
         // If Order is found, update it
         if($Order) {
             $Order->order_date = $request->order_date;
+            $Order->product_id = $request->product_id;
+            $Order->quantity = $request->quantity;
+            $Order->price = $request->price;
+            $Order->discount = $request->discount;
+            $Order->total_amount = $request->total_amount;
             $Order->status = $request->status;
             $Order->customer_id = $request->customer_id;
+            $Order->payment_method =  $request->payment_method;
             $Order->save();
         // Return a JSON response update success
         return response()->json([
